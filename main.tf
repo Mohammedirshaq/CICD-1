@@ -1,11 +1,11 @@
 provider "google" {
-  project = "saicharan-452306"
+  project = "sam-452209"
 }
 
 resource "google_compute_instance" "terrainstancesai" {
   count = 2 
   name = "terra-${count.index + 1}"
-  zone             = "us-central1-a"
+  zone             = "us-central1-c"
   machine_type     = "e2-medium"
   
 
