@@ -1,8 +1,8 @@
 pipeline {
     agent any
-tools {
+/* tools {
         terraform 'terra'  // This will install Terraform automatically
-    }
+    } */
     environment {
         SONAR_URL = 'http://35.211.186.41:9000'
         SONAR_TOKEN = credentials('sonar-token')  // Add this in Jenkins credentials
