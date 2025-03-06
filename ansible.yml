@@ -1,6 +1,6 @@
 ---
 - name: Install Docker in CentOS 9
-  hosts: all
+  hosts: sam_us_east1_b
   become: yes   # sudo permissions
 
   tasks:
@@ -11,31 +11,39 @@
           - device-mapper-persistent-data
           - lvm2
         state: present
+      when: ansible_host != "35.211.186.41"
 
     - name: Add Docker Repository
       shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+      when: ansible_host != "35.211.186.41"
 
     - name: Install Docker
       yum:
         name: docker-ce
         state: present
+      when: ansible_host != "35.211.186.41"
 
     - name: Start Docker Service
       systemd:
         name: docker
         state: started
         enabled: yes
+      when: ansible_host != "35.211.186.41"
 
     - name: Docker Version Check
       command: docker --version
       register: docker_version
+      when: ansible_host != "35.211.186.41"
 
     - name: Show Docker Version
       debug:
         msg: "Docker Installed Successfully - {{ docker_version.stdout }}"
+      when: ansible_host != "35.211.186.41"
         
     - name: docker pull image
       command: docker pull mdirshaq/javasample1:latest
+      when: ansible_host != "35.211.186.41"
     
     - name: container run with image
       command: docker run -d -p 8085:8081 --name container mdirshaq/javasample1:latest
+      when: ansible_host != "35.211.186.41"
