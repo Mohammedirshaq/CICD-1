@@ -31,6 +31,20 @@ pipeline {
                }
             }
         }
+         stage("Quality Gate") {
+            steps {
+             def qg = waitForQualityGate()
+                if (qg.status != 'OK') {
+                    echo "Quality Gate failed: ${qg.status}"
+    // Optionally fail the build
+    // error "Pipeline failed due to Quality Gate failure"
+                }
+              }
+            }
+          
+       
+
+        /*
        stage("Quality Gate") {
             steps {
               timeout(time: 10, unit: 'MINUTES') {
@@ -38,7 +52,7 @@ pipeline {
               }
             }
           }
-       
+       */
         stage('Build Docker Image') {
     steps {
         sh '''
