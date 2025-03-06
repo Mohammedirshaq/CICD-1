@@ -4,9 +4,9 @@ tools {
         terraform 'terra'  // This will install Terraform automatically
     }
     environment {
-        SONAR_URL = 'http://34.27.111.131:9000'
+        SONAR_URL = 'http://35.211.186.41:9000'
         SONAR_TOKEN = credentials('sonar-token')  // Add this in Jenkins credentials
-        IMAGE_NAME = "saicharan12121/javasample1"
+        IMAGE_NAME = "mdirshaq/javasample1"
         BUILD_NUMBER = "${env.BUILD_NUMBER}"
         GOOGLE_APPLICATION_CREDENTIALS = credentials('gcp.json')
    
