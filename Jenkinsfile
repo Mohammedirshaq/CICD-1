@@ -31,13 +31,18 @@ pipeline {
                }
             }
         }
-       stage("Quality Gate") {
+       stage('Check Quality Gate') {
             steps {
-              timeout(time: 10, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true
-              }
+                script {
+                    timeout(time: 2, unit: 'MINUTES') {
+                        def qualityGate = waitForQualityGate()
+                        if (qualityGate.status != 'OK') {
+                            error "Quality Gate failed! Code coverage must be greater than 70%."
+                        }
+                    }
+                }
             }
-          }
+        }
        
         stage('Build Docker Image') {
     steps {
