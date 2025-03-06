@@ -8,7 +8,7 @@ pipeline {
         SONAR_TOKEN = credentials('sonar-token')  // Add this in Jenkins credentials
         IMAGE_NAME = "mdirshaq/javasample1"
         BUILD_NUMBER = "${env.BUILD_NUMBER}"
-        GOOGLE_APPLICATION_CREDENTIALS = credentials('gcp.json')
+        GOOGLE_APPLICATION_CREDENTIALS = credentials('gcp')
    
     }
 
