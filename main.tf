@@ -5,7 +5,7 @@ provider "google" {
 resource "google_compute_instance" "terrainstancesai" {
   count = 2 
   name = "terra-${count.index + 1}"
-  zone             = "us-central1-c"
+  zone             = "us-east1-b"
   machine_type     = "e2-medium"
   
 
